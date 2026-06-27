@@ -4,7 +4,8 @@ const cartItemSchema = new mongoose.Schema({
     productId : {type : mongoose.Schema.Types.ObjectId, ref : 'Product', required : true},
     quantity : {type : Number, required : true, min : [1, "Quantity must be atleast 1"],default : 1},
     category : {type : String, required : true},
-    priceAtaddition : {type : Number, required : true}
+    priceAtaddition : {type : Number, required : true},
+    addedAt : {type : Date, default : Date.now}
 },{_id : false});
 
 

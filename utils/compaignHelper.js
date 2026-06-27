@@ -1,18 +1,28 @@
-const calculateCampaignDiscount = (cartItems, subTotal) => {
+
+const calculateCampaignDiscount = (cart) => {
     let bestDiscount = 0;
     let campaignName = "NONE";
+    let calculatedSubTotal = 0;
+    let totalItems = cart.items.length;
+
+    // calculate subTotal
+    for(let i = 0; i < totalItems; i++){
+        let currentItem = cart.items[i];
+        calculatedSubTotal += currentItem.quantity * currentItem.priceAtaddition;
+}
 
     // if subTotal is > 5000 then apply 10% discount
-    if(subTotal >= 5000){
-        bestDiscount = subTotal * 10/100;
+    if(calculatedSubTotal >= 5000){
+        bestDiscount = calculatedSubTotal * 10/100;
         campaignName = "MEGA_SAVER"
     }
 
     // category diversity bonus
     let uniqueCategories = new Set();
-    for(let i = 0; i < cartItems.length; i++){
-        if(cartItems[i].category){
-            uniqueCategories.add(cartItems[i].category);
+    for(let i = 0; i < totalItems; i++){
+        let currentItem = cart.items[i];
+        if(currentItem.category){
+            uniqueCategories.add(currentItem.category);
         }
     }
 
@@ -25,20 +35,25 @@ const calculateCampaignDiscount = (cartItems, subTotal) => {
     }
 
     //special bonus
-    if(subTotal >= 5000 && uniqueCategories.size >= 3){
-        const specialBonus = subTotal * 20/100;
+    if(calculatedSubTotal >= 5000 && uniqueCategories.size >= 3){
+        const specialBonus = calculatedSubTotal * 20/100;
         if(specialBonus > bestDiscount){
             bestDiscount = specialBonus;
             campaignName = 'SPECIAL_BONUS';
         }
     }
 
-    return {
-        discountAmount : bestDiscount,
-        campaignName
-    }
+    cart.subTotal = calculatedSubTotal;
+    cart.discountAmount = bestDiscount;
+    cart.grandTotal = calculatedSubTotal - bestDiscount;
+    cart.appliedCampaign = campaignName;
+    
+    return cart;
    
 
 }
+
+
+
 
 module.exports = calculateCampaignDiscount;
