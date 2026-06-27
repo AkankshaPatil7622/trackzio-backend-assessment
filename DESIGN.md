@@ -1,4 +1,4 @@
-```markdown
+
 # 🛠️ System Design & Core Business Logic Architecture
 
 This document outlines the underlying design patterns, decoupling strategies, data models, and specialized algorithms implemented within the Cart Management system.
@@ -113,4 +113,3 @@ const cartSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('Cart',cartSchema);
-```
