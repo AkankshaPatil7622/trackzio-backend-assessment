@@ -10,7 +10,7 @@ A production-ready, highly optimized Cart Management backend microservice built 
 
   ```bash
    git clone <repository-url>
-   cd cart-management-system
+   cd trackzio-backend-assessment
    ```
 
    Install node dependencies:
@@ -24,7 +24,7 @@ A production-ready, highly optimized Cart Management backend microservice built 
 Here is an overview of how the project files and directories are organized:
 
 ```text
-cart-management-system/
+trackzio-backend-assessment/
 ├── config/
 │   └── db.js                # MongoDB connection configuration
 |   └── env.config.js        # For centralized environment configuration
