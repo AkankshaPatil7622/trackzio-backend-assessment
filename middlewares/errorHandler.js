@@ -3,7 +3,7 @@ const errorHandler = (err, req, res, next) => {
     res.status(err.statusCode || 500).json({
         success : false,
         message : err.message || "Internal server error",
-        stack: process.env.NODE_ENV === 'production' ? null : err.stack
+        stack: process.env.NODE_ENV === 'production' ? null : err.stack  // added only to check issues in modules
     })
 }
 
